@@ -7,7 +7,6 @@ from os.path import isfile, join
 path = 'legendas'
 files = [f for f in listdir(path) if isfile(join(path, f))]
 
-
 translator = Translator()
 
 for arch in files:
@@ -15,11 +14,8 @@ for arch in files:
     count = 0
     print(str(path+'\\'+arch))
     for sub in subs:
-        print(count)
-        print(subs[count].text)
-        tt = translator.translate('hello', src='en', dest='pt')
-        print(tt.text)
-        #subs[count].text = tt.text
-        #subs.save(encoding='utf-8')
+        tt = translator.translate(subs[count].text, src='en', dest='pt')
+        subs[count].text = tt.text
+        subs.save(encoding='utf-8')
         count +=1
 
